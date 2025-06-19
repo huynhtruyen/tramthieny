@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trầm Thiên Ý - Trầm Hương Cao Cấp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #3d2914;
+            background: linear-gradient(135deg, #f7f3e9 0%, #e8ddd4 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(61, 41, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #f7f3e9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(61, 41, 20, 0.4), rgba(61, 41, 20, 0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23c4a57a;stop-opacity:1" /><stop offset="100%" style="stop-color:%23967a5c;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad1)"/><circle cx="200" cy="150" r="3" fill="%23d4af37" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="800" cy="200" r="2" fill="%23d4af37" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite"/></circle><circle cx="1000" cy="100" r="4" fill="%23d4af37" opacity="0.2"><animate attributeName="opacity" values="0.2;0.7;0.2" dur="5s" repeatCount="indefinite"/></circle></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #d4af37, #f7d794);
+            color: #3d2914;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #3d2914;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #d4af37;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .meditation-quote {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f0ebe2 0%, #e8ddd4 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #3d2914;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #d4af37, #f7d794);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #3d2914;
+        }
+
+        .product-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, #3d2914, #5d4434);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .buy-button:hover {
+            background: linear-gradient(45deg, #5d4434, #3d2914);
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: rgba(61, 41, 20, 0.05);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #3d2914;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #3d2914;
+            color: #f7f3e9;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .zen-symbol {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .zen-symbol::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #d4af37;
+            transform: translateY(-50%);
+        }
+
+        .zen-symbol::after {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            width: 50%;
+            height: 50%;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating meditation elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+        <div class="floating-particle" style="left: 80%; top: 30%; animation-delay: 2s;"></div>
+        <div class="floating-particle" style="left: 60%; top: 70%; animation-delay: 4s;"></div>
+        <div class="floating-particle" style="left: 20%; top: 80%; animation-delay: 1s;"></div>
+        <div class="floating-particle" style="left: 90%; top: 60%; animation-delay: 3s;"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Trầm Thiên Ý</div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang Chủ</a></li>
+                <li><a href="#about">Giới Thiệu</a></li>
+                <li><a href="#products">Sản Phẩm</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Trầm Thiên Ý</h1>
+            <p>Hương trầm thiêng liêng - Tâm hồn thanh tịnh</p>
+            <p style="font-size: 1.1em; opacity: 0.8; margin-bottom: 40px;">
+                "Một nén hương trầm, ngàn năm tĩnh lặng"
+            </p>
+            <a href="#products" class="cta-button">Khám Phá Bộ Sưu Tập</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Về Trầm Thiên Ý</h2>
+                    <p>
+                        Trầm Thiên Ý mang đến những sản phẩm trầm hương cao cấp, được tuyển chọn kỹ lưỡng từ những vùng đất thiêng liêng. Mỗi que trầm đều chứa đựng tinh hoa của thiên nhiên và sự tĩnh lặng của tâm hồn.
+                    </p>
+                    <p>
+                        Chúng tôi hiểu rằng trầm hương không chỉ là một sản phẩm, mà là cầu nối giữa con người với thiên nhiên, giữa tâm hồn với sự yên bình. Qua từng nén hương, bạn sẽ tìm thấy sự tĩnh lặng và thanh tịnh cho tâm hồn.
+                    </p>
+                    <div class="meditation-quote">
+                        "Hương trầm thơm thoảng, tâm hồn thanh thản. 
+                        Trong sự tĩnh lặng, ta tìm thấy chính mình."
+                    </div>
+                    <p>
+                        Với hơn 20 năm kinh nghiệm trong việc sưu tầm và chế biến trầm hương, Trầm Thiên Ý cam kết mang đến cho bạn những sản phẩm chất lượng nhất, giúp bạn trên con đường tu tâm và tĩnh tâm.
+                    </p>
+                </div>
+                <div class="about-image fade-in" style="text-align: center;">
+                    <div style="width: 300px; height: 300px; background: linear-gradient(45deg, #d4af37, #f7d794); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                        <div style="font-size: 4em; color: white;">🕉️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title fade-in">Bộ Sưu Tập Trầm Hương</h2>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <div class="product-icon">🌿</div>
+                    <h3>Trầm Hương Thiền Định</h3>
+                    <p>Được tuyển chọn từ gỗ trầm già, mang lại sự tĩnh lặng sâu sắc cho việc thiền định và tu tâm.</p>
+                    <div class="price">1.200.000 VNĐ</div>
+                    <button class="buy-button" onclick="contact('Trầm Hương Thiền Định')">Đặt Hàng</button>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-icon">✨</div>
+                    <h3>Trầm Hương Cao Cấp</h3>
+                    <p>Trầm hương chất lượng cao với hương thơm tinh tế, thích hợp cho các dịp lễ quan trọng.</p>
+                    <div class="price">2.500.000 VNĐ</div>
+                    <button class="buy-button" onclick="contact('Trầm Hương Cao Cấp')">Đặt Hàng</button>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-icon">🎋</div>
+                    <h3>Trầm Hương Gia Đình</h3>
+                    <p>Dành cho gia đình, mang lại không gian ấm cúng và thanh tịnh cho ngôi nhà của bạn.</p>
+                    <div class="price">800.000 VNĐ</div>
+                    <button class="buy-button" onclick="contact('Trầm Hương Gia Đình')">Đặt Hàng</button>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-icon">🪷</div>
+                    <h3>Trầm Hương Tâm Linh</h3>
+                    <p>Sản phẩm đặc biệt dành cho những ai theo đuổi con đường tâm linh và tu tập.</p>
+                    <div class="price">1.800.000 VNĐ</div>
+                    <button class="buy-button" onclick="contact('Trầm Hương Tâm Linh')">Đặt Hàng</button>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-icon">🌙</div>
+                    <h3>Trầm Hương Đêm Yên</h3>
+                    <p>Hương thơm nhẹ nhàng, giúp thư giãn và có giấc ngủ sâu, yên bình.</p>
+                    <div class="price">950.000 VNĐ</div>
+                    <button class="buy-button" onclick="contact('Trầm Hương Đêm Yên')">Đặt Hàng</button>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-icon">🌸</div>
+                    <h3>Trầm Hương Quý Hiếm</h3>
+                    <p>Từ những cây trầm trăm tuổi, sản phẩm giới hạn dành cho những người sành điệu.</p>
+                    <div class="price">5.000.000 VNĐ</div>
+                    <button class="buy-button" onclick="contact('Trầm Hương Quý Hiếm')">Đặt Hàng</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Liên Hệ</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Thông Tin Liên Hệ</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Địa chỉ:</strong><br>
+                            Bồng Sơn, Bình Định, Việt Nam
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Điện thoại:</strong><br>
+                            0123 456 789
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>Email:</strong><br>
+                            info@tramthieny.vn
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <strong>Giờ mở cửa:</strong><br>
+                            8:00 - 18:00 (Thứ 2 - Chủ nhật)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <h3>Gửi Tin Nhắn</h3>
+                    <form style="display: flex; flex-direction: column; gap: 20px;">
+                        <input type="text" placeholder="Họ và tên" style="padding: 15px; border: none; border-radius: 10px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <input type="email" placeholder="Email" style="padding: 15px; border: none; border-radius: 10px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <input type="tel" placeholder="Số điện thoại" style="padding: 15px; border: none; border-radius: 10px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <textarea placeholder="Tin nhắn của bạn" rows="5" style="padding: 15px; border: none; border-radius: 10px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); resize: vertical;"></textarea>
+                        <button type="submit" class="cta-button" style="align-self: flex-start;">Gửi Tin Nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="zen-symbol"></div>
+            <p>&copy; 2025 Trầm Thiên Ý. Tất cả quyền được bảo lưu.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">
+                "Hương trầm thiêng liêng - Tâm hồn thanh tịnh"
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact function
+        function contact(productName) {
+            alert(`Cảm ơn bạn quan tâm đến "${productName}".\n\nVui lòng liên hệ:\n📞 0123 456 789\n✉️ info@tramthieny.vn\n\nChúng tôi sẽ tư vấn chi tiết cho bạn!`);
+        }
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Dynamic particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'floating-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            
+            document.querySelector('.floating-elements').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 10000);
+        }
+
+        setInterval(createParticle, 3000);
+    </script>
+</body>
+</html>
